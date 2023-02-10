@@ -41,25 +41,31 @@ function add(event) {
 
     const newBook = new Books(titleVal, authorVal, pagesVal)
     myLibrary.push(newBook)
-    console.log(myLibrary, "add works")
+    // console.log(myLibrary, "add works")
 
-
+    setTable(newBook)
 }
 
 
 const newTable = document.createElement("table");
-newTable.innerHTML = "<thead><th>Player</th><th>Score</th></thead>";
+newTable.innerHTML = "<thead><th>Title</th><th>Author</th> <th></th></thead>";
 target.appendChild(newTable)
 
 for (let book of myLibrary) {
+    setTable(book)
+}
+
+function setTable(x) {
     const newRow = document.createElement("tr");
     const tdPlayer = document.createElement("td");
     const tdScore = document.createElement("td");
-    tdPlayer.textContent = book.title;
-    tdScore.textContent = book.author;
+    tdPlayer.textContent = x.title;
+    tdScore.textContent = x.author;
     newRow.appendChild(tdPlayer);
     newRow.appendChild(tdScore);
     newTable.appendChild(newRow);
+    console.log(x)
+
 }
 
 
