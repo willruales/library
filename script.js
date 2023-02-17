@@ -46,8 +46,8 @@ function add(event) {
     myLibrary.push(newBook)
     // console.log(myLibrary, "add works")
 
-    //setTable(newBook)
-    loop()
+    setTable(newBook)
+    //loop()
 
 }
 
@@ -57,13 +57,25 @@ newTable.innerHTML = "<thead><th>Title</th><th>Author</th> <th></th></thead>";
 target.appendChild(newTable)
 
 
-// function setTable(x) {
+function setTable(x) {
 
-//     insert = newTable.insertRow()
+    //
 
-//     insert.innerHTML = `<tr> <button id = "delete"> Delete</button> <td> ${x.title} </td> <td> ${x.author} </td> </tr>`
+    insert = newTable.insertRow()
+    for (int in myLibrary) {
+        insert.innerHTML = `<tr> <button id = "delete" data-number = ${int} onclick= ping(${int}) > Delete</button> <td> ${x.title} </td> <td> ${x.author} </td> </tr>`
 
-// }
+    }
+
+
+}
+
+function ping(x) {
+    let digit = parseInt(x)
+    console.log("pingping", digit)
+    myLibrary.pop(digit)
+    setTable(myLibrary)
+}
 
 exp.addEventListener("click", remove)
 
@@ -76,19 +88,19 @@ function remove() {
 }
 
 
-function loop() {
+// function loop() {
 
-    for (let book of myLibrary) {
+//     for (let book of myLibrary) {
 
-        console.log(book)
+//         console.log(book)
 
-        insert = newTable.insertRow()
+//         insert = newTable.insertRow()
 
-        insert.innerHTML = `<tr> <button id = "delete" data-number = ${book}> Delete</button> <td> ${book.title} </td> <td> ${book.author} </td> </tr>`
-        //console.log(button.dataset.number)
-    }
+//         insert.innerHTML = `<tr> <button id = "delete" data-number = ${book}> Delete</button> <td> ${book.title} </td> <td> ${book.author} </td> </tr>`
+//         //console.log(button.dataset.number)
+//     }
 
-}
+// }
 
 
 
@@ -98,4 +110,4 @@ form.addEventListener("submit", add)
 // //////////////
 // setTable(book1)
 // setTable(book2)
-loop(book1)
+// //loop(book1)
