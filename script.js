@@ -5,13 +5,15 @@ const title1 = document.getElementById("title")
 const author1 = document.getElementById("author")
 const pages1 = document.getElementById("pages")
 const exp = document.getElementById("exp")
+const newTable = document.querySelector(".newTable");
 
-const myLibrary = [{ title: "this", author: "is", pages: "it" }]
+//const myLibrary = [{ title: "this", author: "is", pages: "it" }]
 const book1 = new Books("LOTR", "TOLKIEN", 300)
 const book2 = new Books("Starwars", "G Lucas", 200)
 book1.info()
-myLibrary.push(book1)
-myLibrary.push(book2)
+// myLibrary.push(book1)
+// myLibrary.push(book2)
+myLibrary = []
 
 
 function Books(title, author, pages) {
@@ -34,8 +36,6 @@ function Books(title, author, pages) {
 //     }
 // }
 
-
-
 function add(event) {
     event.preventDefault
     titleVal = title1.value
@@ -44,70 +44,51 @@ function add(event) {
 
     const newBook = new Books(titleVal, authorVal, pagesVal)
     myLibrary.push(newBook)
-    // console.log(myLibrary, "add works")
-
-    setTable(newBook)
-    //loop()
-
-}
-
-
-const newTable = document.createElement("table");
-newTable.innerHTML = "<thead><th>Title</th><th>Author</th> <th></th></thead>";
-target.appendChild(newTable)
-
-
-function setTable(x) {
-
-    //
-
     insert = newTable.insertRow()
-    for (int in myLibrary) {
-        insert.innerHTML = `<tr> <button id = "delete" data-number = ${int} onclick= ping(${int}) > Delete</button> <td> ${x.title} </td> <td> ${x.author} </td> </tr>`
-
-    }
-
+    setTable()
 
 }
 
-function ping(x) {
-    let digit = parseInt(x)
-    console.log("pingping", digit)
-    myLibrary.pop(digit)
-    setTable(myLibrary)
+
+
+function setTable() {
+    //newTable.innerHTML = " "
+
+    for (let book of myLibrary) {
+
+        for (i in myLibrary) {
+            line = `<tr> <button id = "delete" data-number = "${[i]}" onclick= ping(event) > Delete</button> <td> ${book.title} ${[i]} </td> <td> ${book.author} </td> </tr>`
+            insert.innerHTML = line
+
+        }
+    }
+}
+
+
+
+function ping(event) {
+    // let show = event.target.dataset.number
+    // let num = parseInt(show)
+
+    // console.log(typeof num)
+    // myLibrary.pop(num)
+    // console.log(myLibrary, "shows")
+    // newTable.deleteRow(num + 1)
+    myLibrary.splice(1, 1)
+    setTable()
 }
 
 exp.addEventListener("click", remove)
 
 function remove() {
     myLibrary.pop()
-    console.log("remove works", myLibrary)
-    var rowCount = newTable.rows.length;
+    // console.log("remove works", myLibrary)
+    // var rowCount = newTable.rows.length;
 
-    newTable.deleteRow(rowCount - 1);
+    // newTable.deleteRow(rowCount - 1);
+    setTable(myLibrary)
 }
-
-
-// function loop() {
-
-//     for (let book of myLibrary) {
-
-//         console.log(book)
-
-//         insert = newTable.insertRow()
-
-//         insert.innerHTML = `<tr> <button id = "delete" data-number = ${book}> Delete</button> <td> ${book.title} </td> <td> ${book.author} </td> </tr>`
-//         //console.log(button.dataset.number)
-//     }
-
-// }
-
 
 
 
 form.addEventListener("submit", add)
-
-// //////////////
-// setTable(book1)
-// setTable(book2)
-// //loop(book1)
