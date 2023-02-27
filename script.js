@@ -1,6 +1,6 @@
 const bookFormInput = document.querySelectorAll("fieldset > input");
 const form = document.querySelector("form")
-const target = document.getElementById("target")
+const target = document.querySelector(".target")
 const title1 = document.getElementById("title")
 const author1 = document.getElementById("author")
 const pages1 = document.getElementById("pages")
@@ -44,37 +44,55 @@ function add(event) {
 
     const newBook = new Books(titleVal, authorVal, pagesVal)
     myLibrary.push(newBook)
-    insert = newTable.insertRow()
+    // insert = newTable.insertRow()
     setTable()
 
 }
 
 
 
+// function setTable() {
+//     newTable.innerHTML = ""
+
+//     for (let book of myLibrary) {
+//         let bookEl = document.createElement("div")
+//         for (i in myLibrary) {
+//             bookEl.innerHTML = `<tr> <button id = "delete" data-number = "${[i]}" onclick= ping(event) > Delete</button> <td> ${book.title} ${[i]} </td> <td> ${book.author} </td> </tr>`
+//             //insert.innerHTML = line
+
+//         }
+//         target.appendChild(bookEl)
+//     }
+// }
+
 function setTable() {
-    //newTable.innerHTML = " "
+    target.innerHTML = ""
+    for (i = 0; i < myLibrary.length; i++) {
+        let book = myLibrary[i]
+        let bookEl = document.createElement("div")
+        bookEl.innerHTML = `<tr> <button id = "delete" data-number = "${[i]}" onclick= ping(${i}) > Delete</button> <td> ${book.title} ${[i]} </td> <td> ${book.author} </td> <td>
+        <input type="checkbox" aria-label="ALL CHECKBOX" aria-checked="false"></td></tr>`
 
-    for (let book of myLibrary) {
+        console.log("ping")
+        target.appendChild(bookEl)
 
-        for (i in myLibrary) {
-            line = `<tr> <button id = "delete" data-number = "${[i]}" onclick= ping(event) > Delete</button> <td> ${book.title} ${[i]} </td> <td> ${book.author} </td> </tr>`
-            insert.innerHTML = line
 
-        }
+
     }
 }
 
-
-
-function ping(event) {
+function ping(index) {
+    // //target.innerHTML = ""
     // let show = event.target.dataset.number
     // let num = parseInt(show)
 
     // console.log(typeof num)
     // myLibrary.pop(num)
-    // console.log(myLibrary, "shows")
-    // newTable.deleteRow(num + 1)
-    myLibrary.splice(1, 1)
+    // //console.log(myLibrary, "shows")
+    // //newTable.deleteRow(num + 1)
+    myLibrary.splice(index, 1)
+
+    console.log(typeof index, index, myLibrary)
     setTable()
 }
 
