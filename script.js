@@ -8,20 +8,26 @@ const exp = document.getElementById("exp")
 const newTable = document.querySelector(".newTable");
 
 //const myLibrary = [{ title: "this", author: "is", pages: "it" }]
-const book1 = new Books("LOTR", "TOLKIEN", 300)
-const book2 = new Books("Starwars", "G Lucas", 200)
-book1.info()
+// const book1 = new Books("LOTR", "TOLKIEN", 300)
+// const book2 = new Books("Starwars", "G Lucas", 200)
+// book1.info()
 // myLibrary.push(book1)
 // myLibrary.push(book2)
 myLibrary = []
 
 
-function Books(title, author, pages) {
-    this.title = title
-    this.author = author
-    this.pages = pages
-    this.info = function () {
-        console.log(this.title, this.author, this.pages)
+// function Books(title, author, pages) {
+
+// }
+
+class Books {
+    constructor(title, author, pages,) {
+        this.title = title
+        this.author = author
+        this.pages = pages
+        this.info = function () {
+            console.log(this.title, this.author, this.pages)
+        }
     }
 }
 
@@ -65,22 +71,39 @@ function add(event) {
 //     }
 // }
 
+// function setTable() {
+//     target.innerHTML = ""
+//     for (i = 0; i < myLibrary.length; i++) {
+//         let book = myLibrary[i]
+//         let bookEl = document.createElement("div")
+//         bookEl.innerHTML = `<tr> <button id = "delete" data-number = "${[i]}" onclick= ping(${i}) > Delete</button> <td> ${book.title} </td> <td> ${book.author} </td> <td>
+//         <input type="checkbox" aria-label="ALL CHECKBOX" aria-checked="false"></td></tr>`
+
+//         console.log("ping")
+//         target.appendChild(bookEl)
+
+
+
+//     }
+// }
+
+
 function setTable() {
-    target.innerHTML = ""
-    for (i = 0; i < myLibrary.length; i++) {
-        let book = myLibrary[i]
-        let bookEl = document.createElement("div")
-        bookEl.innerHTML = `<tr> <button id = "delete" data-number = "${[i]}" onclick= ping(${i}) > Delete</button> <td> ${book.title} ${[i]} </td> <td> ${book.author} </td> <td>
-        <input type="checkbox" aria-label="ALL CHECKBOX" aria-checked="false"></td></tr>`
-
-        console.log("ping")
-        target.appendChild(bookEl)
-
-
-
+    target.innerHTML = "";
+    for (let i = 0; i < myLibrary.length; i++) {
+        let book = myLibrary[i];
+        let bookEl = document.createElement("div");
+        bookEl.innerHTML = `<tr>
+        <td>${book.title}</td>
+        <td>${book.author}</td>
+        <td>${book.pages}</td>
+        <td>
+          <button id="delete" data-number="${i}" onclick="ping(${i})">Delete</button>
+        </td>
+      </tr>`;
+        target.appendChild(bookEl);
     }
 }
-
 function ping(index) {
     // //target.innerHTML = ""
     // let show = event.target.dataset.number
