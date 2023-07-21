@@ -16,9 +16,6 @@ const newTable = document.querySelector(".newTable");
 myLibrary = []
 
 
-// function Books(title, author, pages) {
-
-// }
 
 class Books {
     constructor(title, author, pages,) {
@@ -30,17 +27,6 @@ class Books {
         }
     }
 }
-
-// function addArray() {
-//     if (inputFirstName.value || inputLastName.value != "") {
-//         fname.push(inputFirstName.value);
-//         lname.push(inputLastName.value);
-
-//         inputFirstName.value = "";
-//         inputLastName.value = "";
-//         results.innerHTML = "";
-//     }
-// }
 
 function add(event) {
     event.preventDefault
@@ -56,43 +42,13 @@ function add(event) {
 }
 
 
-
-// function setTable() {
-//     newTable.innerHTML = ""
-
-//     for (let book of myLibrary) {
-//         let bookEl = document.createElement("div")
-//         for (i in myLibrary) {
-//             bookEl.innerHTML = `<tr> <button id = "delete" data-number = "${[i]}" onclick= ping(event) > Delete</button> <td> ${book.title} ${[i]} </td> <td> ${book.author} </td> </tr>`
-//             //insert.innerHTML = line
-
-//         }
-//         target.appendChild(bookEl)
-//     }
-// }
-
-// function setTable() {
-//     target.innerHTML = ""
-//     for (i = 0; i < myLibrary.length; i++) {
-//         let book = myLibrary[i]
-//         let bookEl = document.createElement("div")
-//         bookEl.innerHTML = `<tr> <button id = "delete" data-number = "${[i]}" onclick= ping(${i}) > Delete</button> <td> ${book.title} </td> <td> ${book.author} </td> <td>
-//         <input type="checkbox" aria-label="ALL CHECKBOX" aria-checked="false"></td></tr>`
-
-//         console.log("ping")
-//         target.appendChild(bookEl)
-
-
-
-//     }
-// }
-
-
 function setTable() {
-    target.innerHTML = "";
+
+    let body = document.querySelector('tbody')
+    body.innerHTML = "";
     for (let i = 0; i < myLibrary.length; i++) {
         let book = myLibrary[i];
-        let bookEl = document.createElement("div");
+        let bookEl = document.createElement("tr");
         bookEl.innerHTML = `<tr>
         <td>${book.title}</td>
         <td>${book.author}</td>
@@ -101,7 +57,7 @@ function setTable() {
           <button id="delete" data-number="${i}" onclick="ping(${i})">Delete</button>
         </td>
       </tr>`;
-        target.appendChild(bookEl);
+        body.appendChild(bookEl);
     }
 }
 function ping(index) {
